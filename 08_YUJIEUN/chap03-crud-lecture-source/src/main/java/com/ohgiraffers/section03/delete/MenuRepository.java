@@ -1,43 +1,49 @@
 package com.ohgiraffers.section03.delete;
 
-
-
-import com.ohgiraffers.section02.update.Menu;
-
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Properties;
 
+import static com.ohgiraffers.common.JDBCTemplate.close;
 
 public class MenuRepository {
-    private final Properties prop = new Properties();
 
-
+    private final Properties properties;
     public MenuRepository() {
+        properties = new Properties();
+
         try {
-            prop.load(new FileReader("src/main/java/com/ohgiraffers/mapper/MenuMapper.xml"));
-        } catch (Exception e) {
-            throw new RuntimeException("쿼리 파일 로딩 실패", e);
+            properties.loadFromXML(new FileInputStream("src/main/java/com/ohgiraffers/mapper/MenuMapper.xml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
-
-
-
-    public int delteMenu(Connection con, int delteCode) {
+    /***
+     * 메뉴코드를 이용해서 메뉴삭제 기능
+     * @param con 연결객체
+     * @param menuCode 삭제할 메뉴코드번호
+     * @return 성공여부
+     */
+    public int deleteMenu(Connection con, int menuCode) {
         PreparedStatement pstmt = null;
         int result = 0;
 
-        String sql =properties.pro;
+        try {
+            String sql = properties.getProperty("deleteMenu");
+            System.out.println("sql = " + sql);
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, menuCode);
 
-        pstmt = con.prepareStatement(sql);
-        pstmt.setString(1, delteCode.getMenuName());
-        pstmt.setInt(2, delteCode.getMenuPrice());
-        pstmt.setInt(3, delteCode.getCategoryCode());
-        pstmt.setString(4, delteCode.getOrderableStatus());
+            result = pstmt.executeUpdate();
 
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(pstmt);
+        }
+        return result;
     }
 }
-

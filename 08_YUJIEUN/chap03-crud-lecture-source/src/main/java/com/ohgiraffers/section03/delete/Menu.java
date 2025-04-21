@@ -2,13 +2,37 @@ package com.ohgiraffers.section03.delete;
 
 public class Menu {
 
-
-
+    private int menuCode;
+    private String menuName;
+    private int menuPrice;
     private int categoryCode;
     private String orderableStatus;
 
-
     public Menu() {
+    }
+
+    public int getMenuCode() {
+        return menuCode;
+    }
+
+    public void setMenuCode(int menuCode) {
+        this.menuCode = menuCode;
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
+
+    public int getMenuPrice() {
+        return menuPrice;
+    }
+
+    public void setMenuPrice(int menuPrice) {
+        this.menuPrice = menuPrice;
     }
 
     public int getCategoryCode() {
@@ -30,8 +54,9 @@ public class Menu {
     @Override
     public String toString() {
         return "Menu{" +
-
-
+                "menuCode=" + menuCode +
+                ", menuName='" + menuName + '\'' +
+                ", menuPrice=" + menuPrice +
                 ", categoryCode=" + categoryCode +
                 ", orderableStatus='" + orderableStatus + '\'' +
                 '}';

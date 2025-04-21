@@ -10,7 +10,8 @@ public class Application1 {
         Connection con = null;
 
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306","ohgiraffers","ohgiraffers");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306"
+                    , "ohgiraffers", "ohgiraffers");
             System.out.println("con = " + con);
         } catch (SQLException e) {
             throw new RuntimeException(e);

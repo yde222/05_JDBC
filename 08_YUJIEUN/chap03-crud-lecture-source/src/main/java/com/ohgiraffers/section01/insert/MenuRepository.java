@@ -9,10 +9,9 @@ import java.util.Properties;
 
 import static com.ohgiraffers.common.JDBCTemplate.close;
 
-
 /* Repository 계층
- * DBMS를 통해 수행되는 CRUD 작업 단위의 메소드를 정의
- * */
+* DBMS를 통해 수행되는 CRUD 작업 단위의 메소드를 정의
+* */
 public class MenuRepository {
 
     private final Properties prop;
