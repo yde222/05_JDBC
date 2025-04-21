@@ -23,5 +23,6 @@ public class Application2 {
         System.out.println("[Application] main() : menu ====> " + menu);
         MenuService menuService = new MenuService();
         menuService.registMenu(menu);
+        System.out.println("[Application] main() : main() End");
     }
 }

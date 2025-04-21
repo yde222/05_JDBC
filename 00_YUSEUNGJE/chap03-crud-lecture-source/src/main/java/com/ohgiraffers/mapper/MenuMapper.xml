@@ -2,7 +2,21 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment/>
-    <entry key="">
-
+    <entry key="insertMenu">
+        INSERT
+          INTO tbl_menu
+        (
+          menu_name
+        , menu_price
+        , category_code
+        , orderable_status
+        )
+        VALUES
+        (
+          ?
+        , ?
+        , ?
+        , ?
+        )
     </entry>
 </properties>

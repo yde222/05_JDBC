@@ -59,5 +59,23 @@ public class JDBCTemplate {
         }
     }
 
+    public static void commit(Connection con) {
+        try {
+            if (con != null && !con.isClosed()) {
+               con.commit();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    public static void rollback(Connection con) {
+        try {
+            if (con != null && !con.isClosed()) {
+                con.rollback();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
