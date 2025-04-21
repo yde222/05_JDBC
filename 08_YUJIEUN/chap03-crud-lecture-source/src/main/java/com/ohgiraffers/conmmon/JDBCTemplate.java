@@ -10,7 +10,7 @@ public class JDBCTemplate {
         Properties props = new Properties();
         Connection con = null;
         try {
-            props.load(new FileReader("src/main/java/com/ohgiraffers/config/connection-info.properties"));
+            props.load(new FileReader("src/main/java/com/ohgiraffers/config/jdbc-info.properties"));
 
             String driver = props.getProperty("driver");
             String url = props.getProperty("url");
@@ -49,6 +49,26 @@ public class JDBCTemplate {
         try {
             if (rset != null) {
                 rset.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void commit(Connection con) {
+        try {
+            if (con != null && !con.isClosed()) {
+                con.commit();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void rollback(Connection con) {
+        try {
+            if (con != null && !con.isClosed()) {
+                con.rollback();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
